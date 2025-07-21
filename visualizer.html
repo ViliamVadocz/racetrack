@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Racetrack Visualizer</title>
+    <title>Racetrack</title>
     <style>
         * {
             margin: 0;
@@ -33,6 +33,7 @@
             if (event.source != ninja.contentWindow) return;
             if (!ptnNinjaHasLoaded && event.data.action == "GAME_STATE") {
                 ptnNinjaHasLoaded = true;
+                ninja.contentWindow.postMessage({action: "SET_NAME", value: "Racetrack"}, "*")
                 const ws = new WebSocket(`ws://localhost:${PORT}`);
 
                 ws.onmessage = function (event) {
